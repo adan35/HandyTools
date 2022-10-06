@@ -1,0 +1,46 @@
+Tag	Data	Default	Req.	Description
+Acquirer > ID	AN 11	N/A	Y	Acquirer Identification Code. This is a unique code assigned to each of the acquirer of the MCP service.
+Acquirer > User ID	AN 20	N/A	C	Acquirer’s user ID assigned by MCP.
+Acquirer > Password	Strg 512	N/A	C	Acquirer’s password assigned by MCP or encrypted string.
+Acquirer > ARN	Strg 20	N/A	O	Acquirer’s Reference Number.
+Acquirer > Additional > Data1	Strg 25	N/A	O	Additional Data that acquirer wants to pass along for reference or any other purpose.
+Acquirer > Additional > Data2	Strg 25	N/A	O	Additional Data that acquirer wants to pass along for reference or any other purpose.
+Acquirer > Additional > Data3	Strg 25	N/A	O	Additional Data that acquirer wants to pass along for reference or any other purpose.
+CardAcceptor > ID	AN 15	N/A	O	Merchant identifier.
+CardAcceptor > NameAndLocation	N 40	N/A	O	Merchant’s name and location. Characters from: • 1-23 contain the merchant name. • 24-36 contain the city name. • 37-38 contain state code. • 39-40 contain country code.
+CardAcceptor > MCC	Strg 4	N/A	O	Merchant Category Code. Only Digit values are allowed in this tag.
+CardAcceptor > DeviceId	Strg 64	N/A	O	The merchant’s device identifier.
+CardAcceptor > DeviceType	A 1	W	O	Device type identifier.
+CardAcceptor > LocalDateTime	DT	Current Date & Time	O	Date and time of the device sending the request. Date format: YYYY-MM-DDTHH:MM:SS
+CardAcceptor > ClerkId	AN 10	N/A	O	Clerk ID RSR. (RSR stands for Retail Store Representative)
+CardAcceptor > InterfaceId	Strg 15	N/A	O	Identifies the interface from where the request is initiated.
+Card > Number	Strg 19	N/A	C	Number of the card to register. Only Digit values are allowed in this tag. If ReferenceID is given, this number is optional. Otherwise, it is mandatory.
+Card > ReferenceID	AN 40	N/A	C	12 or 15 digit Card Reference Number used to identify a card. If card number is provided the Reference ID is optional otherwise it is mandatory.
+Card > CustomerId	AN 20	N/A	C	The customer ID, unique to each cardholder. This is required if the Card Number or the Reference Number is not provided.
+Card > MemberNumber	N 19	N/A	C	Cardholder’s card account number If ReferenceID or CustomerId is given this number is optional, otherwise it is mandatory.
+Card > CardBIN	Strg 6 to Strg 8	N/A	C	Card BIN (Bank identification number). Only Digit values are allowed in this tag.
+Card > StartingNumbers	N 6 to N 10	N/A	O	At least six Card Starting Numbers (BIN). Only Digit values are allowed in this tag. This is Required if the card account number is not present.
+ExternalCardProfile > Action	A 1	A	Y	Values can be A, U, R or X. • A: Add a new account number with this profile. (Default) • Update the existing profile only. • Remove the existing account number. • Add a new account number with this profile or Update the existing profile only (Default)
+ExternalCardProfile > AccountNumber	Strg 19	N/A	O	External card account number. Only Digit values are allowed in this tag.
+ExternalCardProfile > AccountReferenceID	AN 40	N/A	O	The reference ID for the account number.
+ExternalCardProfile > CardType	A 1	N/A	O	Identifies the card type: • V – Visa • M – MasterCard, Eurocard2 • A – American Express • D – Discover • C – Diners Club • B – Carte Blanche • J – JCB • E – EnRoute • L – JAL • T – Maestro (UK Domestic) • N – NICOS house card • X – Delta • Y – Visa Electron • Z – Dankort • P – Carte Bleue • Q – Carta Si • R – Encoded account number • S – UATP • U – Maestro (International) • F – ORICO house card • G – Elo In case no value is provided, the default card type defined for the card program will be used.
+ExternalCardProfile > SecurityCode	Strg 512	N/A	O	The security code (CVV2/CVC2) to be validated. Only Digit values are allowed in this tag or encrypted String.
+ExternalCardProfile > ExpiryDate	Strg 512	N/A	O	Card's Expiry Date or encrypted string.
+ExternalCardProfile > isDefault	A 1	Y	O	• Y – this is the default external card • N – this is not the default external card
+ExternalCardProfile > FirstName	Strg 60	N/A	O	Cardholder's first name.
+ExternalCardProfile > MiddleName	Strg 60	N/A	O	Cardholder's middle name.
+ExternalCardProfile > LastName	Strg 60	N/A	O	Cardholder's last name.
+ExternalCardProfile > Address	Strg 60	N/A	O	Cardholder’s Primary Address. This is a mandatory field for OFAC/AVS. If OFAC/AVS is to be performed, then all mandatory fields required for OFAC/AVS must be provided.
+ExternalCardProfile > Address2	Strg 60	N/A	O	Secondary Address of cardholder.
+ExternalCardProfile > City	Strg 60	N/A	O	Cardholder’s city name. This is a mandatory field for OFAC/AVS. If OFAC/AVS is to be performed, then all mandatory fields required for OFAC/AVS must be provided.
+ExternalCardProfile > StateCode	Strg 60	N/A	O	Cardholder’s state name. This is a mandatory field for OFAC/AVS. If OFAC/AVS is to be performed, then all mandatory fields required for OFAC/AVS must be provided.
+ExternalCardProfile > PostalCode	AN 80	N/A	O	Cardholder’s zip code. It also supports hyphenated(-) Zip Code. This is a mandatory field for OFAC/AVS. If OFAC/AVS is to be performed, then all mandatory fields required for OFAC/AVS must be provided.
+ExternalCardProfile > Country	AN 3	N/A	O	Cardholder’s country code.
+ExternalCardProfile > Email	Strg 60	N/A	O	E-mail address.
+ExternalCardProfile > Phone	Strg 15	N/A	O	Cardholder's phone number. Only Digit values are allowed in this tag.
+ExternalCardProfile > MircoPayments	N 10, 2	N/A	C	List of MicroPayment amounts in the request of LinkExternalCard API, value of each will be less than 1.
+ExternalCardProfile> CardLinkingMode	N 1	N/A	O	Possible Values are 0 and 1 (0=External Card, 1=Internal Card) Default value is 0 (external)
+ExternalCardProfile> ADSGroupsId	AN 9	N/A	O	ADS id is generated in response of existing AddADS API.
+ExternalCardProfile> SequenceNo	INT	N/A	O	Used to save the priority of backup/ fall back method cards.
+Description	AN 60	N/A	O	Details, comments, etc.
+SendClearCard	A 1	N/A	O	The value can be Y or N, where Y sends unmasked card number in response, while N sends a masked card number in response. Not specifying a value will result in the card number being omitted from the response.
