@@ -42,5 +42,6 @@ ExternalCardProfile > MircoPayments	N 10, 2	N/A	C	List of MicroPayment amounts i
 ExternalCardProfile> CardLinkingMode	N 1	N/A	O	Possible Values are 0 and 1 (0=External Card, 1=Internal Card) Default value is 0 (external)
 ExternalCardProfile> ADSGroupsId	AN 9	N/A	O	ADS id is generated in response of existing AddADS API.
 ExternalCardProfile> SequenceNo	INT	N/A	O	Used to save the priority of backup/ fall back method cards.
-Description	AN 60	N/A	O	Details, comments, etc.
 SendClearCard	A 1	N/A	O	The value can be Y or N, where Y sends unmasked card number in response, while N sends a masked card number in response. Not specifying a value will result in the card number being omitted from the response.
+SendClearCard > Statements > Stat > s	A 1	N/A	O	The value can be Y or N, where Y sends unmasked card number in response, while N sends a masked card number in response. Not specifying a value will result in the card number being omitted from the response.
+SendClearCard > id	A 1	N/A	O	The value can be Y or N, where Y sends unmasked card number in response, while N sends a masked card number in response. Not specifying a value will result in the card number being omitted from the response.
