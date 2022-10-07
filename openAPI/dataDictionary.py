@@ -1,69 +1,66 @@
 from collections import defaultdict
 
-def makeDataDic(n, m=None):
+def makeDataDic(n, m=-1, s=''):
   dataDic = defaultdict(lambda: -1)
 
   dataDic[f"Strg"] = f"""type: string"""
 
   dataDic[f"Strg{n}"] = f"""type: string
-minLength: 1
-maxLength: {n}
+{s}minLength: 1
+{s}maxLength: {n}
 """
 
   dataDic[f"Strg{n}"] = f"""type: string
-minLength: 1
-maxLength: {n}
+{s}minLength: 1
+{s}maxLength: {n}
 """
 
   dataDic[f"Strg{n}toStrg{m}"] = f"""type: string
-minLength: {n}
-maxLength: {m}
+{s}minLength: {n}
+{s}maxLength: {m}
 """
 
   dataDic[f"AN{n}"] = f"""type: string
-format: AN{n}
+{s}format: AN{n}
 """
 
   dataDic[f"Date"] = f"""type: string
-format: Date
+{s}format: Date
 """
 
   dataDic[f"DT"] = f"""type: string
-format: DT
+{s}format: DT
 """
 
   dataDic[f"D"] = f"""type: string
-format: D
+{s}format: D
 """
 
   dataDic[f"N{n}"] = f"""type: string
-minLength: 1
-maxLength: {n}
+{s}minLength: 1
+{s}maxLength: {n}
 """
 
   dataDic[f"N{n}toN{m}"] = f"""type: string
-format: N{m}
-minLength: {n}
-maxLength: {m}
+{s}format: N{m}
+{s}minLength: {n}
+{s}maxLength: {m}
 """
 
   dataDic[f"N{n},{m}"] = f"""type: string
-format: N{n},{m}
+{s}format: N{n},{m}
 """
 
   dataDic[f"N{n}_N{m}"] =  f"""type: string
-format: N{n}_N{m}
-"""
+{s}format: N{n}_N{m}"""
 
   dataDic[f"A{n}"] =  f"""type: string
-format: A{n}
-"""
+{s}format: A{n}"""
 
   dataDic[f"XN{n}"] =  f"""type: string
-format: XN{n}
-"""
+{s}format: XN{n}"""
 
   dataDic["DateTime"] =  f"""type: string
-format: DateTime
+{s}format: DateTime
 """
   return dataDic
