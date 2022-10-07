@@ -10,6 +10,11 @@ def makeDataDic(n, m=-1, s=''):
 {s}maxLength: {n}
 """
 
+  dataDic[f"Char{n}"] = f"""type: string
+{s}minLength: 1
+{s}maxLength: {n}
+"""
+
   dataDic[f"Strg{n}"] = f"""type: string
 {s}minLength: 1
 {s}maxLength: {n}
@@ -62,5 +67,12 @@ def makeDataDic(n, m=-1, s=''):
 
   dataDic["DateTime"] =  f"""type: string
 {s}format: DateTime
+"""
+
+  dataDic["DateTime"] =  f"""type: string
+{s}format: A1
+"""
+
+  dataDic[f"INT"] = f"""type: integer
 """
   return dataDic
