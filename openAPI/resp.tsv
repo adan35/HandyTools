@@ -1,0 +1,44 @@
+Tag	Data	Description
+ResponseCode	N 4	Response code sent from the MCP server
+ResponseDesc	Strg	Response code description or the response message
+Trans Id	XN 20	Identifier code for the transaction This can be used later to refer to the details for the transaction. ‘X’ represents the prefixed character that indicates type of the transaction message. See Appendix F: Transaction Type Codes for details.
+ARN	Strg 20	Acquirer’s Reference Number
+CustomerId	AN 20	Customer Identification Number
+CardNumber	N 19	Card number The unmasked card number is included in the Response only if the SendClearCard value in the Request is Y. If the SendClearCard value is N, the Response contains the Card Number in a masked format. If no value is provided for SendClearCard, no card number is provided in the Response.
+ReferenceID	AN 40	A 12 or 15 digit card reference number which uniquely identifies a card External reference numbers with a length up to 40 alpha numeric characters will be supported
+CardProgramID	AN 20	ID of the card program to which the card belongs
+ExpDate	Strg 512	Card expiry date or encrypted String. Date format (mmyy)
+StatusCode	A 1	Status code of card Please refer to the appendix for possible values for this field.
+MaxLoadableAmount	N 10, 2	The maximum amount that can be loaded on the card
+FirstName	Strg 60	Cardholder’s first name
+MiddleName	Strg 60	Cardholder’s middle name
+LastName	Strg 60	Cardholder’s last name
+Address1	Strg 60	Cardholder’s address
+Address2	Strg 60	Cardholder’s secondary address
+City	Strg 60	Cardholder’s city name
+StateCode	Strg 60	Cardholder’s state name
+PostalCode	AN 80	Cardholder’s ZIP Code
+Country	A 3	Cardholder's country
+Phone	N 15	Cardholder’s phone number
+ResidentialPhone	N 15	Cardholder’s residential phone number
+CellNumber	Strg 15	Cardholder's cell phone number. Only Digit values are allowed in this tag.
+Email	Strg 60	Cardholder's e-mail address
+Gender	A 1	Cardholder’s gender Can be M or F, where M represents Male and F female.
+Balance	N 10, 2	Card account balance
+Fee	N 10, 2	Fee charged for transaction
+MinLoadAmount	N 10, 2	The minimum possible load amount
+RequestedServiceFee	N 10, 2	The fee requested for the service
+RestrictionName	Strg 60	Card restriction name
+ParamValueType	AN 1	Param Value Types: M:   Min and Max Fields N:    Min Field Only V:    Value Field Only X:    Max Field Only A:    All Fields / ADS only  (card level) B:    ADS only (card or card program level)
+ParamValue	Strg 30	The card parameter value set by the cardholder
+ParamMaxValue	Strg 30	The card parameter maximum limit set by the cardholder
+ParamMinValue	Strg 30	The card parameter minimum limit set by the cardholder
+Frequency	AN 1	D: Daily W: Weekly M: Monthly C: Custom H: Hourly B: Boundary Y: Yearly T: Minute S: Second L: LifeTime E: StatementCycle Z: TimeRestriction
+minDebitAmount	N 10, 2	The minimum possible debit amount [Returned if Debit service Id provided in request, MinLoadAmount will not be returned in this case]
+maxDebitAmount	N 10, 2	The maximum possible debit amount [Returned if Debit service Id provided in request, MaxLoadableAmount will not be returned in this case]
+FraudParams > paramName	Strg	Name of the parameter
+FraudParams > paramValueType	AN 1	Param Value Types: M: Min and Max Fields N: Min Field Only V: Value Field Only X: Max Field Only
+FraudParams > paramValue	Strg 30	The card parameter value set by the cardholder
+FraudParams > paramMinValue	Strg 30	The card parameter minimum limit set by the cardholder
+FraudParams > paramMaxValue	Strg 30	The card parameter maximum limit set by the cardholder
+FraudParams > paramFrequency	AN 1	Possible values D: Daily H=Hourly W: Weekly M: Monthly C: Custom

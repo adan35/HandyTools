@@ -1,0 +1,17 @@
+Tag	Data	Description
+ResponseCode	AN 4	Response code sent from the MCP server. See Appendix Response Codes for details.
+ResponseDesc	Strg	Response code description or the response message
+CardNumber	N 19	Card account number
+CardReferenceID	AN 40	This is a 12 or 15 Digit card reference number which uniquely identifies a card. External reference numbers with a length up to 40 alpha numeric characters will be supported
+UpgradedCardNumber	Strg 19	Upgraded Clear Card Number.
+UpgradedCardRefefenceID	Strg 20	Upgraded card reference number.
+SharingCardNumber	N 19	Card account number of the card associated for balance sharing, profile sharing or supplementary use.
+SharingCardReferenceID	AN 40	Reference ID of the card associated for balance sharing, profile sharing or supplementary use. This is a 12 or 15 digit card reference number, which uniquely identifies a card. External reference numbers with a length up to 40 alpha numeric characters will be supported.
+Balance	N 10, 2	Card account balance.
+Trans Id	XN 20	Identifier code for the transaction. This can later be used to refer to the details for the transaction. ‘X’ represents the prefixed character that indicates the type of transaction message. See Appendix E: Transaction Type Codes for details.
+ARN	Strg 20	Acquirer’s Reference Number.
+ClerkId	AN 10	Clerk ID RSR. (RSR stands for Retail Store Representative).
+CustomerId	AN 20	Customer Identification Number.
+Fee	N 10, 2	Fee charged for the transaction.
+ExpiryDate	Strg 512	The date format is MMYYYY or encrypted string.
+FundsExpiryDate	Date	The date format is MMYYYY.
