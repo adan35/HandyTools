@@ -3,19 +3,15 @@ from collections import defaultdict
 def makeDataDic(n, m=-1, s=''):
   dataDic = defaultdict(lambda: -1)
 
-  dataDic[f"Strg"] = f"""type: string"""
-
-  dataDic[f"Strg{n}"] = f"""type: string
+  if n != "":
+    dataDic[f"Strg{n}"] = f"""type: string
 {s}minLength: 1
 {s}maxLength: {n}
 """
+  else:
+    dataDic[f"Strg"] = f"""type: string"""
 
   dataDic[f"Char{n}"] = f"""type: string
-{s}minLength: 1
-{s}maxLength: {n}
-"""
-
-  dataDic[f"Strg{n}"] = f"""type: string
 {s}minLength: 1
 {s}maxLength: {n}
 """
