@@ -71,4 +71,13 @@ def makeDataDic(n, m=-1, s=''):
 
   dataDic[f"INT"] = f"""type: integer
 """
+
+  dataDic[f"Time"] = f"""type: string
+{s}format: Time
+"""
+
+  dataDic[f"N{n}"] = f"""type: string
+{s}format: N{n}
+"""
+
   return dataDic
