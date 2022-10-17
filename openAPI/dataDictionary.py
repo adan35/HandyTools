@@ -9,8 +9,10 @@ def makeDataDic(isRequest, n, m=-1, s=''):
 {s}maxLength: {n}
 """
   else:
-    dataDic[f"Strg"] = f"""type: string\n"""
-    dataDic[f"Strg{n}"] = f"""type: string\n"""
+    dataDic[f"Strg"] = f"""type: string
+{s}format: Strg\n"""
+    dataDic[f"Strg{n}"] = f"""type: string
+{s}format: Strg{n}\n"""
 
   if isRequest:
     dataDic[f"Char{n}"] = f"""type: string
@@ -31,9 +33,12 @@ def makeDataDic(isRequest, n, m=-1, s=''):
 {s}maxLength: {m}
 """
   else:
-    dataDic[f"Char{n}"] = f"""type: string\n"""
-    dataDic[f"Strg{n}toStrg{m}"] = f"""type: string\n"""
-    dataDic[f"N{n}"] = f"""type: string\n"""
+    dataDic[f"Char{n}"] = f"""type: string
+{s}format: Char{n}\n"""
+    dataDic[f"Strg{n}toStrg{m}"] = f"""type: string
+{s}format: Strg{m}\n"""
+    dataDic[f"N{n}"] = f"""type: string
+{s}format: N{n}\n"""
     dataDic[f"N{n}toN{m}"] = f"""type: string
 {s}format: N{m}\n"""
 
