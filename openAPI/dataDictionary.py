@@ -1,25 +1,42 @@
 from collections import defaultdict
 
-def makeDataDic(n, m=-1, s=''):
+def makeDataDic(isRequest, n, m=-1, s=''):
   dataDic = defaultdict(lambda: -1)
 
-  if n != "":
+  if n != "" and isRequest:
     dataDic[f"Strg{n}"] = f"""type: string
 {s}minLength: 1
 {s}maxLength: {n}
 """
   else:
-    dataDic[f"Strg"] = f"""type: string"""
+    dataDic[f"Strg"] = f"""type: string\n"""
+    dataDic[f"Strg{n}"] = f"""type: string\n"""
 
-  dataDic[f"Char{n}"] = f"""type: string
+  if isRequest:
+    dataDic[f"Char{n}"] = f"""type: string
 {s}minLength: 1
 {s}maxLength: {n}
 """
-
-  dataDic[f"Strg{n}toStrg{m}"] = f"""type: string
+    dataDic[f"Strg{n}toStrg{m}"] = f"""type: string
 {s}minLength: {n}
 {s}maxLength: {m}
 """
+    dataDic[f"N{n}"] = f"""type: string
+{s}minLength: 1
+{s}maxLength: {n}
+"""
+    dataDic[f"N{n}toN{m}"] = f"""type: string
+{s}format: N{m}
+{s}minLength: {n}
+{s}maxLength: {m}
+"""
+  else:
+    dataDic[f"Char{n}"] = f"""type: string\n"""
+    dataDic[f"Strg{n}toStrg{m}"] = f"""type: string\n"""
+    dataDic[f"N{n}"] = f"""type: string\n"""
+    dataDic[f"N{n}toN{m}"] = f"""type: string
+{s}format: N{m}\n"""
+
 
   dataDic[f"AN{n}"] = f"""type: string
 {s}format: AN{n}
@@ -34,26 +51,15 @@ def makeDataDic(n, m=-1, s=''):
 """
 
   dataDic[f"D"] = f"""type: string
-{s}format: D
+{s}format: Date
 """
 
-  dataDic[f"N{n}"] = f"""type: string
-{s}minLength: 1
-{s}maxLength: {n}
-"""
-
-  dataDic[f"N{n}toN{m}"] = f"""type: string
-{s}format: N{m}
-{s}minLength: {n}
-{s}maxLength: {m}
-"""
-
-  dataDic[f"N{n},{m}"] = f"""type: string
+  dataDic[f"N{n},{m}"] = f"""type: number
 {s}format: N{n},{m}
 """
 
-  dataDic[f"N{n}_N{m}"] =  f"""type: string
-{s}format: N{n}_N{m}"""
+  dataDic[f"N{n}_N{m}"] =  f"""type: number
+{s}format: N{n},N{m}"""
 
   dataDic[f"A{n}"] =  f"""type: string
 {s}format: A{n}"""
