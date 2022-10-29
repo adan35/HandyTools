@@ -22,23 +22,31 @@
 
     const input = document.querySelector("#input");
 
-    const dbcheckpoints = []
-    const outputcheckpoints = []
-    let all_headings = []
-    let last = -1;
-
     input.addEventListener("change", () => {
       const file = input.files.item(0);
       fileToText(file, (text) => {
         const content = save(text, "fileName.txt", "text/plain")
+        const db_checkpoint_body = []
+        const output_checkpoint_body = []
+        let all_headings = []
+        let last = -1;
         // ***********main logic starts***********
         const my_json = JSON.parse(content)
         last = my_json.pop()
-        let summaryheadings =  Object.keys(last)
-        let summary = Object.values(last)
+        // summay table head and body
+        let summary_head =  Object.keys(last)
+        let summary_body = Object.values(last)
+        // fetch all headings
         all_headings = Object.keys(my_json[0])
-        const dbcount = 5
-        const outputcount = 1
+        // count for db checkpoints headings
+        const dbcount = 5 
+        // count for output checkpoints headings
+        const outputcount = 1 
+        // db checkpoint head
+        const db_checkpoint_head = all_headings.slice(0, dbcount)
+        // output checkpoint head
+        const output_checkpoint_head = all_headings.slice(dbcount, dbcount + outputcount)
+        // body for db checkpoints and output checkpoints
         let onedbpoint = []
         let oneoutputpoint = []
         my_json.forEach(element => {
@@ -54,32 +62,32 @@
             }
             count += 1
           }
-          dbcheckpoints.push(onedbpoint)
-          outputcheckpoints.push(oneoutputpoint)
+          // push one row in 2D array
+          db_checkpoint_body.push(onedbpoint)
+          output_checkpoint_body.push(oneoutputpoint)
         });
-        const dbheadings = all_headings.slice(0, dbcount)
-        const outputheadings = all_headings.slice(dbcount, dbcount + outputcount)
         
+        // generate pdf
         const doc = new jsPDF()
 
         doc.autoTable({ html: '#my-table1' })
 
         doc.autoTable({
           theme: 'grid',
-          head: [summaryheadings],
-          body: [summary],
+          head: [summary_head],
+          body: [summary_body],
         })
 
         doc.autoTable({
           theme: 'grid',
-          head: [dbheadings],
-          body: dbcheckpoints,
+          head: [db_checkpoint_head],
+          body: db_checkpoint_body,
         })
 
         doc.autoTable({
           theme: 'grid',
-          head: [outputheadings],
-          body: outputcheckpoints,
+          head: [output_checkpoint_head],
+          body: output_checkpoint_body,
         })
 
         doc.save('table.pdf')
