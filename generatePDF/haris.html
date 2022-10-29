@@ -28,16 +28,14 @@
         const content = save(text, "fileName.txt", "text/plain")
         const db_checkpoint_body = []
         const output_checkpoint_body = []
-        let all_headings = []
-        let last = -1;
         // ***********main logic starts***********
         const my_json = JSON.parse(content)
-        last = my_json.pop()
+        const last = my_json.pop()
         // summay table head and body
         let summary_head =  Object.keys(last)
         let summary_body = Object.values(last)
         // fetch all headings
-        all_headings = Object.keys(my_json[0])
+        const all_headings = Object.keys(my_json[0])
         // count for db checkpoints headings
         const dbcount = 5 
         // count for output checkpoints headings
