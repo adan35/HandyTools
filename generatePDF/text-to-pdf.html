@@ -37,13 +37,17 @@
         // fetch all headings
         const all_headings = Object.keys(my_json[0])
         // count for db checkpoints headings
-        const dbcount = 5 
+        const outputcount = 4
         // count for output checkpoints headings
-        const outputcount = 1 
+        const dbcount = 1
         // db checkpoint head
-        const db_checkpoint_head = all_headings.slice(0, dbcount)
+        let output_checkpoint_head = ["testCaseId"]
+        output_checkpoint_head = output_checkpoint_head.concat(all_headings.slice(1, outputcount+1))
+        output_checkpoint_head = output_checkpoint_head.flat()
         // output checkpoint head
-        const output_checkpoint_head = all_headings.slice(dbcount, dbcount + outputcount)
+        let db_checkpoint_head = ["testCaseId"]
+        db_checkpoint_head = db_checkpoint_head.concat(all_headings.slice(outputcount+1, dbcount + outputcount+1))
+        db_checkpoint_head = db_checkpoint_head.flat()
         // body for db checkpoints and output checkpoints
         let onedbpoint = []
         let oneoutputpoint = []
@@ -52,11 +56,16 @@
           onedbpoint = []
           oneoutputpoint = []
           for (const [key, value] of Object.entries(element)) {
-            if(count < dbcount){
+            if(key == "testCaseId"){
+              oneoutputpoint.push(value)
               onedbpoint.push(value)
+              continue
+            }
+            if(count < outputcount){
+              oneoutputpoint.push(value)
             }
             else{
-              oneoutputpoint.push(value)
+              onedbpoint.push(value)
             }
             count += 1
           }
@@ -75,17 +84,17 @@
           head: [summary_head],
           body: [summary_body],
         })
+        
+        doc.autoTable({
+          theme: 'grid',
+          head: [output_checkpoint_head],
+          body: output_checkpoint_body,
+        })
 
         doc.autoTable({
           theme: 'grid',
           head: [db_checkpoint_head],
           body: db_checkpoint_body,
-        })
-
-        doc.autoTable({
-          theme: 'grid',
-          head: [output_checkpoint_head],
-          body: output_checkpoint_body,
         })
 
         doc.save('table.pdf')
